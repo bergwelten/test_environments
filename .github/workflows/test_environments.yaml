@@ -1,0 +1,26 @@
+name: Test my environments
+
+on:
+  push:
+    branches: [ "main" , "dev" ]
+
+jobs:
+
+  run-on-prod:
+    if: github.ref == 'refs/heads/main' 
+    runs-on: ubuntu-latest
+    environment: Prod
+
+    steps:
+      - name: Prod Step
+        run: echo "I am on Prod environment"
+
+  run-on-test:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    environment: Test
+
+    steps:
+      - name: Test Step
+        run: echo "I am in Test environment"
+
